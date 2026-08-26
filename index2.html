@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>엄마의 하루</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f7f5;
+      color: #252525;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Apple SD Gothic Neo",
+        "Noto Sans KR",
+        sans-serif;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: #fafaf8;
+      padding: 28px 20px 40px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .greeting {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 7px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 27px;
+      font-weight: 750;
+      letter-spacing: -1.2px;
+    }
+
+    .date {
+      color: #888;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .profile {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #eee8df;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+    }
+
+    /* Main schedule */
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 720;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .schedule-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 8px 18px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.035);
+    }
+
+    .schedule-item {
+      display: flex;
+      position: relative;
+      padding: 17px 0;
+    }
+
+    .schedule-item + .schedule-item {
+      border-top: 1px solid #f1f1ef;
+    }
+
+    .time {
+      width: 58px;
+      flex-shrink: 0;
+      font-size: 14px;
+      font-weight: 650;
+      color: #333;
+      padding-top: 2px;
+    }
+
+    .timeline {
+      width: 16px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-right: 12px;
+    }
+
+    .timeline::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #8f9bdf;
+      margin-top: 4px;
+      z-index: 2;
+    }
+
+    .timeline::after {
+      content: "";
+      position: absolute;
+      top: 13px;
+      bottom: -21px;
+      width: 1px;
+      background: #e8e8e8;
+    }
+
+    .schedule-item:last-child .timeline::after {
+      display: none;
+    }
+
+    .schedule-content {
+      flex: 1;
+    }
+
+    .child {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 7px;
+      border-radius: 7px;
+      margin-bottom: 6px;
+    }
+
+    .child.one {
+      background: #f3edf8;
+      color: #8a62a4;
+    }
+
+    .child.two {
+      background: #e9f3f0;
+      color: #4f8b7d;
+    }
+
+    .schedule-name {
+      font-size: 15px;
+      font-weight: 650;
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+
+    .schedule-detail {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* Today's summary */
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .summary-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 17px;
+      min-height: 105px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .summary-icon {
+      font-size: 20px;
+      margin-bottom: 11px;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 5px;
+    }
+
+    .summary-main {
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -0.3px;
+    }
+
+    .summary-sub {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 5px;
+    }
+
+    /* Meal */
+    .meal-card {
+      background: #fff4e8;
+      border-radius: 20px;
+      padding: 19px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .meal-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .meal-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 14px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+    }
+
+    .meal-label {
+      font-size: 11px;
+      color: #a38e78;
+      margin-bottom: 4px;
+    }
+
+    .meal-name {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .meal-note {
+      font-size: 11px;
+      color: #a38e78;
+      text-align: right;
+    }
+
+    /* Bottom insight */
+    .insight {
+      background: #eef1ff;
+      border-radius: 20px;
+      padding: 18px;
+      margin-top: 25px;
+    }
+
+    .insight-label {
+      font-size: 11px;
+      color: #7882b7;
+      margin-bottom: 8px;
+      font-weight: 650;
+    }
+
+    .insight-text {
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    /* Bottom navigation */
+    .bottom-nav {
+      position: sticky;
+      bottom: 12px;
+      margin-top: 30px;
+      height: 66px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+    }
+
+    .nav-item {
+      text-align: center;
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    .nav-item.active {
+      color: #6976c5;
+      font-weight: 650;
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    @media (min-width: 700px) {
+      body {
+        padding: 30px 0;
+      }
+
+      .app {
+        min-height: auto;
+        border-radius: 30px;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div>
+        <div class="greeting">좋은 아침이에요, 엄마</div>
+        <h1 class="title">오늘의 하루</h1>
+        <div class="date">8월 19일 수요일</div>
+      </div>
+
+      <div class="profile">🌿</div>
+    </header>
+
+
+    <!-- 아이 일정 -->
+    <section class="section">
+
+      <div class="section-header">
+        <div class="section-title">아이 일정</div>
+        <div class="section-subtitle">오늘 3개</div>
+      </div>
+
+      <div class="schedule-card">
+
+        <div class="schedule-item">
+          <div class="time">15:00</div>
+
+          <div class="timeline"></div>
+
+          <div class="schedule-content">
+            <div class="child one">첫째</div>
+            <div class="schedule-name">피아노 학원</div>
+            <div class="schedule-detail">16:00까지 · ○○음악학원</div>
+          </div>
+        </div>
+
+
+        <div class="schedule-item">
+          <div class="time">16:30</div>
+
+          <div class="timeline"></div>
+
+          <div class="schedule-content">
+            <div class="child two">둘째</div>
+            <div class="schedule-name">태권도</div>
+            <div class="schedule-detail">17:30까지 · ○○태권도</div>
+          </div>
+        </div>
+
+
+        <div class="schedule-item">
+          <div class="time">18:00</div>
+
+          <div class="timeline"></div>
+
+          <div class="schedule-content">
+            <div class="child one">첫째</div>
+            <div class="schedule-name">친구 생일 약속</div>
+            <div class="schedule-detail">18:00 · ○○키즈카페</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 집안일 / 오늘의 준비 -->
+    <section class="section">
+
+      <div class="section-header">
+        <div class="section-title">오늘 챙길 것</div>
+      </div>
+
+      <div class="summary">
+
+        <div class="summary-card">
+          <div class="summary-icon">🧺</div>
+          <div class="summary-label">집안일</div>
+          <div class="summary-main">빨래</div>
+          <div class="summary-sub">로봇청소기도 필요해요</div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-icon">🍚</div>
+          <div class="summary-label">오늘 저녁</div>
+          <div class="summary-main">김치찌개</div>
+          <div class="summary-sub">장보기 필요 2가지</div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 식단 -->
+    <section class="section">
+
+      <div class="section-header">
+        <div class="section-title">오늘의 식단</div>
+      </div>
+
+      <div class="meal-card">
+
+        <div class="meal-left">
+
+          <div class="meal-icon">🍲</div>
+
+          <div>
+            <div class="meal-label">저녁</div>
+            <div class="meal-name">돼지고기 김치찌개</div>
+          </div>
+
+        </div>
+
+        <div class="meal-note">
+          장보기<br>
+          두부 · 대파
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- 저장 정보 -->
+    <section class="insight">
+
+      <div class="insight-label">오늘 하나만</div>
+
+      <div class="insight-text">
+        저장해둔 정보 중<br>
+        이번 주말 아이들과 가기 좋은 장소가 있어요.
+      </div>
+
+    </section>
+
+
+    <!-- Bottom navigation -->
+    <nav class="bottom-nav">
+
+      <div class="nav-item active">
+        <div class="nav-icon">☀️</div>
+        오늘
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">📅</div>
+        일정
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">🧺</div>
+        할 일
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">🍚</div>
+        식단
+      </div>
+
+    </nav>
+
+  </main>
+
+</body>
+</html>
