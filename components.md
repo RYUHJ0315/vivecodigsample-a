@@ -1,4 +1,4 @@
-```
+
 project/
 ├─ index.html
 ├─ style.css
@@ -11,4 +11,3 @@ project/
       ├─ MealSection.js
       ├─ Insight.js
       └─ BottomNav.js
-```

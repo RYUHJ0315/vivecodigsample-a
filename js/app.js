@@ -37,6 +37,8 @@ ${Header()}
 
 ${ScheduleSection(schedules)}
 
+${QuickInput()}
+
 ${SummarySection()}
 
 ${MealSection()}
@@ -50,3 +52,46 @@ ${BottomNav()}
 }
 
 render();
+document.addEventListener("click", (event) => {
+if (event.target.id !== "quickInputButton") {
+return;
+}
+
+const input = document.querySelector("#quickInput");
+const result = document.querySelector("#parsedResult");
+
+const text = input.value.trim();
+
+if (!text) {
+alert("내용을 입력해주세요.");
+return;
+}
+
+result.innerHTML = `
+<div class="parsed-result">
+
+  <div class="parsed-label">
+    이렇게 정리했어요
+  </div>
+
+  <div class="parsed-content">
+    <strong>민준</strong><br />
+    내일 · 16:00<br />
+    태권도
+  </div>
+
+  <div class="parsed-actions">
+    <button class="parsed-cancel">
+      다시 입력
+    </button>
+
+    <button class="parsed-confirm">
+      확인
+    </button>
+  </div>
+
+</div>
+
+`;
+});
+import { QuickInput } from "./components/QuickInput.js";

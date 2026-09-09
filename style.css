@@ -432,3 +432,129 @@ body {
   }
 
 }
+/* =========================
+Quick Input
+========================= */
+
+.quick-input {
+margin-top: 28px;
+margin-bottom: 20px;
+}
+
+.quick-input-label {
+margin-bottom: 10px;
+
+font-size: 13px;
+font-weight: 650;
+color: #555;
+}
+
+.quick-input-box {
+display: flex;
+align-items: center;
+gap: 8px;
+
+padding: 6px;
+
+background: #ffffff;
+
+border-radius: 18px;
+
+box-shadow:
+0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.quick-input-box input {
+flex: 1;
+min-width: 0;
+
+border: none;
+outline: none;
+
+padding: 12px;
+
+background: transparent;
+
+font-size: 13px;
+color: #333;
+}
+
+.quick-input-box button {
+border: none;
+
+padding: 11px 15px;
+
+border-radius: 13px;
+
+background: #6976c5;
+
+color: #ffffff;
+
+font-size: 12px;
+font-weight: 650;
+
+cursor: pointer;
+}
+
+.quick-input-box button:active {
+transform: scale(0.97);
+}
+
+/* =========================
+Parsed Result
+========================= */
+
+.parsed-result {
+margin-top: 12px;
+
+padding: 16px;
+
+border-radius: 18px;
+
+background: #eef1ff;
+}
+
+.parsed-label {
+margin-bottom: 10px;
+
+font-size: 11px;
+color: #7882b7;
+font-weight: 650;
+}
+
+.parsed-content {
+font-size: 14px;
+line-height: 1.6;
+}
+
+.parsed-actions {
+display: flex;
+gap: 8px;
+
+margin-top: 14px;
+}
+
+.parsed-actions button {
+flex: 1;
+
+border: none;
+
+padding: 10px;
+
+border-radius: 12px;
+
+font-size: 12px;
+font-weight: 650;
+
+cursor: pointer;
+}
+
+.parsed-confirm {
+background: #6976c5;
+color: white;
+}
+
+.parsed-cancel {
+background: #ffffff;
+color: #777;
+}
