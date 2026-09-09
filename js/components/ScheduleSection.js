@@ -1,66 +1,64 @@
-const schedules = [
-  {
-    time: "15:00",
-    child: "첫째",
-    childClass: "one",
-    name: "피아노 학원",
-    detail: "13:00 · 브래뉴음악학원",
-  },
-  {
-    time: "16:30",
-    child: "둘째",
-    childClass: "two",
-    name: "유치원 하원",
-    detail: "16:30 · 노블킨더 유치원",
-  },
-  {
-    time: "18:00",
-    child: "첫째",
-    childClass: "one",
-    name: "수영",
-    detail: "16:00 · 동탄복합문화센터",
-  },
-];
+export function ScheduleSection(schedules = []) {
+const sortedSchedules = [...schedules].sort((a, b) => {
+return a.time.localeCompare(b.time);
+});
 
 function ScheduleItem({ time, child, childClass, name, detail }) {
-  return `
-    <div class="schedule-item">
-      <div class="time">${time}</div>
+return `
+<div class="schedule-item">
+<div class="time">${time}</div>
 
-      <div class="timeline"></div>
+    <div class="timeline"></div>
 
-      <div class="schedule-content">
-        <div class="child ${childClass}">
-          ${child}
-        </div>
+    <div class="schedule-content">
+      <div class="child ${childClass}">
+        ${child}
+      </div>
 
-        <div class="schedule-name">
-          ${name}
-        </div>
+      <div class="schedule-name">
+        ${name}
+      </div>
 
-        <div class="schedule-detail">
-          ${detail}
-        </div>
+      <div class="schedule-detail">
+        ${detail}
       </div>
     </div>
-  `;
+  </div>
+`;
+
 }
 
-export function ScheduleSection() {
-  return `
-    <section class="section">
+return `
+<section class="section">
 
-      <div class="section-header">
-        <div class="section-title">아이 일정</div>
-        <div class="section-subtitle">
-          오늘 ${schedules.length}개
-        </div>
-      </div>
+  <div class="section-header">
+    <div class="section-title">
+      아이 일정
+    </div>
 
-      <div class="schedule-card">
-        ${schedules.map(ScheduleItem).join("")}
-      </div>
+    <div class="section-subtitle">
+      오늘 ${sortedSchedules.length}개
+    </div>
+  </div>
 
-    </section>
-  `;
+  <div class="schedule-card">
+    ${
+      sortedSchedules.length > 0
+        ? sortedSchedules.map(ScheduleItem).join("")
+        : `
+          <div style="
+            padding: 24px 0;
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+          ">
+            오늘 일정이 없어요.
+          </div>
+        `
+    }
+  </div>
+
+</section>
+
+`;
 }
