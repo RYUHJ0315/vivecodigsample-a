@@ -4,6 +4,7 @@ import { SummarySection } from "./components/SummarySection.js";
 import { MealSection } from "./components/MealSection.js";
 import { Insight } from "./components/Insight.js";
 import { BottomNav } from "./components/BottomNav.js";
+import { QuickInput } from "./components/QuickInput.js";
 
 const app = document.querySelector("#app");
 
@@ -94,4 +95,3 @@ result.innerHTML = `
 
 `;
 });
-import { QuickInput } from "./components/QuickInput.js";

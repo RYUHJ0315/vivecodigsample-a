@@ -1,5 +1,5 @@
-
 project/
+├─ package.json
 ├─ index.html
 ├─ style.css
 └─ js/
@@ -10,4 +10,5 @@ project/
       ├─ SummarySection.js
       ├─ MealSection.js
       ├─ Insight.js
-      └─ BottomNav.js
+      ├─ BottomNav.js
+      └─ QuickInput.js
